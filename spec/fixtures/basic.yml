@@ -247,12 +247,12 @@ html: |-
 name: footnote reference
 desc: Numeric references within text to footnotes appear between square brackets.
 in: This is covered elsewhere[1].
-html: <p>This is covered elsewhere<sup class="footnote"><a href="#fn1">1</a></sup>.</p>
+html: <p>This is covered elsewhere<sup class="footnote" id="fnr1"><a href="#fn1">1</a></sup>.</p>
 --- 
 name: footnote
 desc: To create the footnote that corresponds to its reference within the text, begin a new paragraph with fn and the footnote&#8217;s number, followed by a dot and a space.
 in: fn1. Down here, in fact.
-html: <p class="footnote" id="fn1"><sup>1</sup> Down here, in fact.</p>
+html: <p class="footnote" id="fn1"><a href="#fnr1"><sup>1</sup></a> Down here, in fact.</p>
 --- 
 name: em
 desc: Emphasis to text is added by surrounding a phrase with underscores.  In HTML, this often appears as <em>italics</em>.
@@ -367,7 +367,17 @@ name: css id
 desc: An element ID can be given by prefixing the ID with a pound symbol and using it in place of the class.
 in: p(#big-red). Red here
 html: <p id="big-red">Red here</p>
---- 
+---
+name: css id with initial uppercase
+desc: CSS IDs are supposed to be lowercase, but Textile understands the invalid capitalization nonetheless
+in: p(#Foo). bar
+html: <p id="Foo">bar</p>
+---
+name: css class uppercase
+desc: CSS classes are supposed to be lowercase, but Textile understands the invalid capitalization nonetheless
+in: p(fooBar). baz
+html: <p class="fooBar">baz</p>
+---
 name: class and id combined
 desc: Class and ID can be combined by placing the class first.
 in: p(example1#big-red2). Red here
@@ -375,8 +385,8 @@ html: <p class="example1" id="big-red2">Red here</p>
 --- 
 name: css style
 desc: Style settings can be provided directly by surrounding them in curly braces.
-in: p{color:blue;margin:30px;font-size:120%;}. Spacey blue
-html: <p style="color:blue;margin:30px;font-size:120%;">Spacey blue</p>
+in: p{color:blue;margin:30px;font-size:120%;font-family:'Comic Sans'}. Spacey blue
+html: <p style="color:blue;margin:30px;font-size:120%;font-family:&#39;Comic Sans&#39;;">Spacey blue</p>
 --- 
 name: language designations
 desc: Language designations can be given between angel brackets.
